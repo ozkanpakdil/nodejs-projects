@@ -48,9 +48,15 @@ function sendTweetWithImage(filePath, dataMap, textFor) {
 module.exports = {
     sendTweet: sendTweet,
     sendTweetStats: sendTweetWithImage,
-    help: function () {
-        console.log('This module sends tweet...')
-    },
+    startCron: function () {
+        cron.schedule('0 1 * * *', () => {
+            console.log('Running a job at 01:00 at America/Sao_Paulo timezone');
+            index();
+        }, {
+            scheduled: true,
+            timezone: "America/Sao_Paulo"
+        });
+    }
 };
 
 // try {
