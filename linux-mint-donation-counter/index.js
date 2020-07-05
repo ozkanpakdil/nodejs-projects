@@ -1,4 +1,3 @@
-var cron = require('node-cron');
 
 const { JsonDB } = require("node-json-db");
 const { Config } = require("node-json-db/dist/lib/JsonDBConfig");
