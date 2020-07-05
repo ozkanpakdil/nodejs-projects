@@ -1,0 +1,24 @@
+{
+  "name": "linux-mint-donation-counter",
+  "version": "1.0.0",
+  "description": "simple text extractor",
+  "main": "index.js",
+  "author": "ozkan pakdil",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "chart.js": "^2.9.3",
+    "chartjs-node-canvas": "^3.0.6",
+    "chartjs-plugin-datalabels": "^0.7.0",
+    "country-emoji": "^1.5.3",
+    "jquery": "^3.5.1",
+    "jsdom": "^16.2.2",
+    "node-cron": "^2.0.3",
+    "node-fetch": "^2.6.0",
+    "node-json-db": "^1.1.0",
+    "rss-parser": "^3.8.0",
+    "twit": "^2.2.11"
+  }
+}
