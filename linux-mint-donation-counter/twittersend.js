@@ -2,10 +2,8 @@ var cron = require('node-cron');
 const { flag, code, name, countries } = require('country-emoji');
 const { JsonDB } = require("node-json-db");
 const { Config } = require("node-json-db/dist/lib/JsonDBConfig");
-var db = new JsonDB(new Config("myDataBase", true, false, "/"));
 var fs = require('fs')
 var Twit = require("twit");
-const { data } = require("jquery");
 
 var T = new Twit({
     consumer_key: process.env.consumer_key,
@@ -46,9 +44,23 @@ function sendTweetWithImage(filePath, dataMap, textFor) {
     });
 }
 
+function searchTweet(yearAndMonth) {
+    return T.get('statuses/user_timeline', {
+        screen_name: process.env.search_user_screen, include_rts: true, since_id: 1279861242153373693, count: 1000
+    }).then(function (result) {
+        for (d in result.data) {
+            if (result.data[d].text.indexOf('linuxmint donation stats for ' + yearAndMonth) > 0) {
+                return true;
+            }
+        }
+        return false;
+    });
+}
+
 module.exports = {
     sendTweet: sendTweet,
     sendTweetStats: sendTweetWithImage,
+    getTweet: searchTweet,
     startCron: function () {
         cron.schedule('0 1 * * *', () => {
             console.log('Running a job at 01:00 at America/Sao_Paulo timezone');
@@ -59,16 +71,3 @@ module.exports = {
         });
     }
 };
-
-// try {
-//     let dbPath = `/2020/June/stats`;
-//     let data = db.getData(dbPath);
-
-//     let map = new Map(JSON.parse(data));
-//     sendTweetWithImage('2020-June.png', map,'stats:');
-// } catch (error) { console.error(error) }
-
-
-// T.get('statuses/show/1279359048173920256', { count: 10 }, function(err, data, response) {
-//     console.log(data)
-//   })
