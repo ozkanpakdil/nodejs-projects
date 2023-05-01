@@ -1,6 +1,8 @@
 import { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
+  fullyParallel: true,
+  workers: 2,
   webServer: {
     command: 'npm run start',
     port: 3000,
