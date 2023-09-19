@@ -1,0 +1,8 @@
+.react-flow__node.heater {
+  background-image: url("./public/heater.png");
+  background-size: 45px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+}
